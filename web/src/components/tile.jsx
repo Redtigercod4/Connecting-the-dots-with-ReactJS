@@ -1,8 +1,9 @@
 import { TableCell, TableRow } from "@mui/material";
 
 function Tile(props) {
+
     return (
-        props.data.map((row, index) => (
+        props.data.aircraft?.map((row, index) => (
             <TableRow key={index}>
                 <TableCell>{row.tailNumber}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>

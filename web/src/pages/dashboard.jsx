@@ -4,18 +4,15 @@ import Tile from "../components/tile";
 import React, { useEffect, useState } from "react";
 
 function Dashboard() {
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch("https://api.aetherion.workers.dev");
-            const data = await response.json();
-            setData(data);
-        };
-        fetchData();
+        fetch("https://api.aetherion.workers.dev/", {
+            "Content-Type": "application/json"
+        })
+        .then(res => res.json())
+        .then(data => setData(data))
     }, []);
-
-    console.log(data);
 
     return (
         <Layout>
@@ -31,7 +28,7 @@ function Dashboard() {
                     </TableHead>
                 </Table>
                 <TableBody>
-                    <Tile props={data} />
+                    <Tile data={data} />
                 </TableBody>
             </TableContainer>
         </Layout>
