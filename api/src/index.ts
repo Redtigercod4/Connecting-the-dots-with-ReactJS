@@ -57,6 +57,9 @@ export default {
 			]
 		}
 
-		return Response.json(data);
+		const headers = new Headers();
+		headers.set('Access-Control-Allow-Origin', '*');
+
+		return Response.json(data, { headers: headers });
 	},
 } satisfies ExportedHandler;
