@@ -1,16 +1,21 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Layout from "../components/layout"
 import Tile from "../components/tile";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Dashboard() {
-    const [data, setData] = React.useState();
+    const [data, setData] = useState();
 
-    React.useEffect(() => {
-        fetch("https://api.aetherion.workers.dev/")
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }, [])
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("https://api.aetherion.workers.dev");
+            const data = await response.json();
+            setData(data);
+        };
+        fetchData();
+    }, []);
+
+    console.log(data);
 
     return (
         <Layout>
